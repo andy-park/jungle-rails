@@ -1,6 +1,9 @@
 class CartsController < ApplicationController
 
   def show
+    if cart == {}
+    render '_nocart.html.erb'
+    end
   end
 
   def add_item
