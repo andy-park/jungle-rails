@@ -1,4 +1,6 @@
 class Admin::CategoriesController < ApplicationController
+    
+    before_filter :authenticate
 
     def new
         @category = Category.new
