@@ -6,9 +6,16 @@
   <body>
     <h1>Hey there!</h1>
     <p>
-      Your order for <%= @order.total %> has been successfully processed!
+      Your Order#<%= @order.id %> for <%= @order.total %> has been successfully processed!
     </p>
-  
-
+    <p>
+      This order contains:
+        <%= @order.line_items.each do |item| %>
+        <%= item.product.name %>
+        <%= item.product.description %>
+        <%= item.quantity %>
+        <%= item.product.price %>
+        <% end %>
+    </p>
   </body>
 </html>
