@@ -1,0 +1,14 @@
+<%= form_for([@product, @review]) do |form| %>
+
+<div class="container">
+  <div class="row">
+    Rating:      <%= form.text_field :rating %>
+  </div>
+  <div class="row">
+    Description: <%= form.text_area :description, size:"20x2" %>
+  </div>
+  <div class="row">
+    <%= form.submit %>
+  <% end %>
+  </div>
+</div>

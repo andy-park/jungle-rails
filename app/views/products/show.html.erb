@@ -26,6 +26,23 @@
       </div>
     </div>
 
+    <% if current_user %>
+    <%= render(partial: 'products/form') %>
+    <% end %>
+    <div class="container">
+      <% @product.reviews.order('created_at DESC').each do |review| %>
+      <div>
+      <h4 class="panel-title">Review<% current_user.first_name %></h4>
+      </div>
+      <div>
+      <p>Description: <%= review.description %></p>
+      </div>
+      <div>
+      <p>Rating: <%= review.rating %></p>
+      <%= button_to "Delete", product_review_path(:product_id => review.product_id, :id => review.id), method: :delete %>
+      <% end %>
+      </div>
+    </div> 
   </article>
 
 </section>

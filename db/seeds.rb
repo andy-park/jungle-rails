@@ -21,6 +21,10 @@ end
 
 # Let's do this ...
 
+## USERS
+
+user1 = User.create! first_name: 'Andy', last_name: 'Park', email: 'ap@ap.com', password: 'ap'
+
 ## CATEGORIES
 
 puts "Finding or Creating Categories ..."
@@ -108,7 +112,7 @@ cat2.products.create!({
   price: 2_026.29
 })
 
-cat3.products.create!({
+var = cat3.products.create!({
   name:  'Optimal Sleeping Bed',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture1.jpg'),
@@ -134,3 +138,9 @@ cat3.products.create!({
 
 
 puts "DONE!"
+
+puts "Reviews"
+
+Review.destroy_all
+
+var.reviews.create! user: user1, description: "Most excellent", rating: 5

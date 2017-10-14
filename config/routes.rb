@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-
+# resources :sessions, only: [:new, :create, :destroy]
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+  # resources :users, only: [:new, :create]
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create, :destroy]
+  end
   resources :categories, only: [:show]
 
   resource :cart, only: [:show] do
