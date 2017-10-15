@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
     before_filter :authorize
 
     def create
@@ -18,7 +17,7 @@ class ReviewsController < ApplicationController
         @review = Review.find(params[:id])
         @product = Product.find(params[:product_id])
         @review.destroy
-        render template: 'products/show'
+        redirect_to :back
     end
 
     private

@@ -22,26 +22,38 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <% if @average.to_i == 0 %>
+          <dt>Product Rating</dt>
+          <dd>No reviews for this item yet</dd>
+          <% else %>
+          <dt>Product Rating</dt>
+          <dd><%= @average.to_i %></dd>
+          <% end %>
         </dl>
       </div>
     </div>
 
+    <% user = User.all%>
     <% if current_user %>
     <%= render(partial: 'products/form') %>
     <% end %>
-    <div class="container">
+    <div class="col-sm-8">
+      <dl class="dl-horizontal">
+      <h2>All Reviews</h2>
       <% @product.reviews.order('created_at DESC').each do |review| %>
-      <div>
-      <h4 class="panel-title">Review<% current_user.first_name %></h4>
-      </div>
-      <div>
-      <p>Description: <%= review.description %></p>
-      </div>
-      <div>
-      <p>Rating: <%= review.rating %></p>
-      <%= button_to "Delete", product_review_path(:product_id => review.product_id, :id => review.id), method: :delete %>
+      <dt>Description</dt>
+      <dd><%= review.description %></dd>
+      <dt>Rating</dt>
+      <dd><%= review.rating %></dd>
+      <dt>Submitted by</dt>
+       <% @reviewer = user[review.user_id - 1] %>
+      <dd><%= @reviewer.first_name %></dd>
+      <% if current_user %>
+      <dt>Delete Review</dt>
+      <dd><%= button_to "Delete", product_review_path(:product_id => review.product_id, :id => review.id), method: :delete %></dd>
       <% end %>
-      </div>
+      <% end %>
+      </dl>
     </div> 
   </article>
 

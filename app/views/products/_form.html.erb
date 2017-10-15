@@ -1,14 +1,14 @@
 <%= form_for([@product, @review]) do |form| %>
 
-<div class="container">
-  <div class="row">
-    Rating:      <%= form.text_field :rating %>
-  </div>
-  <div class="row">
-    Description: <%= form.text_area :description, size:"20x2" %>
-  </div>
-  <div class="row">
-    <%= form.submit %>
+<div class="col-sm-8">
+        <dl class="dl-horizontal">
+          <h2>Leave a Review</h2>
+          <dt>Rating</dt>
+          <dd class="dropdown"><%= form.select :rating, [5, 4, 3, 2, 1] %></dd>
+          <dt>Description</dt>
+          <dd><%= form.text_field :description %></dd>
+          <dt></dt>
+          <dd><%= form.submit %></dd>
   <% end %>
   </div>
 </div>
